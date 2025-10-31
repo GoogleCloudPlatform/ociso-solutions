@@ -1,5 +1,5 @@
 resource "google_org_policy_policy" "require_os_login" {
-  name   = "${var.parent_id}/policies/compute.requireOsLogin"
+  name   = "${var.parent_id}/policies/compute.managed.requireOsLogin"
   parent = var.parent_id
 
   spec {
@@ -20,8 +20,8 @@ resource "google_org_policy_policy" "vm_external_ip_access" {
   }
 }
 
-resource "google_org_policy_policy" "disable_vpc_external_ipv6" {
-  name   = "${var.parent_id}/policies/compute.disableVpcExternalIpv6"
+resource "google_org_policy_policy" "skip_default_network_creation" {
+  name   = "${var.parent_id}/policies/compute.skipDefaultNetworkCreation"
   parent = var.parent_id
 
   spec {
