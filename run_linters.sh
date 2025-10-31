@@ -28,38 +28,38 @@ LINTER_CONTAINER_IMAGE="ghcr.io/super-linter/super-linter:${LINTER_CONTAINER_IMA
 echo "Running linter container image: ${LINTER_CONTAINER_IMAGE}"
 
 SUPER_LINTER_COMMAND=(
-  docker run
+	docker run
 )
 
 if [ -t 0 ]; then
-  SUPER_LINTER_COMMAND+=(
-    --interactive
-    --tty
-  )
+	SUPER_LINTER_COMMAND+=(
+		--interactive
+		--tty
+	)
 fi
 
 if [ "${LINTER_CONTAINER_OPEN_SHELL:-}" == "true" ]; then
-  SUPER_LINTER_COMMAND+=(
-    --entrypoint "/bin/bash"
-  )
+	SUPER_LINTER_COMMAND+=(
+		--entrypoint "/bin/bash"
+	)
 fi
 
 if [ "${LINTER_CONTAINER_FIX_MODE:-}" == "true" ]; then
-  SUPER_LINTER_COMMAND+=(
-    --env-file ".github/linters/super-linter-fix-mode.env"
-  )
+	SUPER_LINTER_COMMAND+=(
+		--env-file ".github/linters/super-linter-fix-mode.env"
+	)
 fi
 
 SUPER_LINTER_COMMAND+=(
-  --env RUN_LOCAL="true"
-  --env-file ".github/linters/super-linter.env"
-  --name "super-linter"
-  --rm
-  --volume "$(pwd)":/tmp/lint
-  --volume /etc/localtime:/etc/localtime:ro
-  --workdir /tmp/lint
-  "${LINTER_CONTAINER_IMAGE}"
-  "$@"
+	--env RUN_LOCAL="true"
+	--env-file ".github/linters/super-linter.env"
+	--name "super-linter"
+	--rm
+	--volume "$(pwd)":/tmp/lint
+	--volume /etc/localtime:/etc/localtime:ro
+	--workdir /tmp/lint
+	"${LINTER_CONTAINER_IMAGE}"
+	"$@"
 )
 
 echo "Super-linter command: ${SUPER_LINTER_COMMAND[*]}"
