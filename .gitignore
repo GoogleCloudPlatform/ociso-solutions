@@ -9,3 +9,6 @@
 # Environment-specific variables
 *.tfvars
 *.tfvars.json
+
+# Super Linter output files
+super-linter-output/*
