@@ -1,6 +1,6 @@
-# Google Cloud Minimum Viable Secure Platform (GCMVSP)
+# Google Cloud minimum viable secure platform (GCMVSP)
 
-This repository contains sample code to implement the set of terraform policies recommended by GMVSP.
+This repository contains sample code to implement the set of terraform policies recommended by GCMVSP.
 This repository assumes you're already familiar with the [Organization Policy Service](https://docs.cloud.google.com/resource-manager/docs/organization-policy/overview#violations).
 
 ## Where to apply organization policies
